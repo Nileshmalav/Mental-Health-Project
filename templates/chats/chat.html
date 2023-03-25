@@ -1,0 +1,5 @@
+{% for chat in chats%} {% if user.username == chat.sender.username %}
+<div class="chat__msgRow"><div class="chat__message notMine"><div>{{chat.content}}</div> <span>{{chat.timestamp}}</span></div></div>
+{% else %}
+<div class="chat__msgRow"><div class="chat__message mine"><div>{{chat.content}}</div> <span>{{chat.timestamp}}</span></div></div>
+{% endif%} {% endfor%}

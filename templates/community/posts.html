@@ -1,0 +1,72 @@
+{% extends "community/base.html" %}
+<b></b>
+{% load static %}
+<b></b>
+{% block title%}Community{% endblock %}
+<b></b>
+{% block middlepanel %}
+<b></b>
+{% for post in yourfeed %}
+
+<div class="post">
+  <div class="post-top">
+    <div class="dp">
+      <img src="./images/girl.jpg" alt="" />
+    </div>
+    <div class="post-info">
+      <p class="name">{{ post.user.name }}</p>
+      <span class="time">{{post.timestamp}}</span>
+    </div>
+    <i class="fas fa-ellipsis-h"></i>
+  </div>
+
+  <div class="post-content">
+    <b> {{ post.title }} </b>
+
+    {{post.content}}
+  </div>
+
+  <div class="post-bottom">
+    <div class="action">
+      {{post.like_count}}
+      <i class="far fa-thumbs-up"></i>
+      <span>Upvote</span>
+    </div>
+    <div class="action">
+      {{post.comment_count}}
+      <i class="far fa-comment"></i>
+      <span>Comment</span>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<br />
+{% endblock %}
+<b></b>
+{% block rightpanel %}
+
+<div class="friends-section">
+  <h4>Recommended Topics</h4>
+  {% for topic in topics %}
+  <a class="friend" href="#">
+    <div class="dp">
+      <img src="./images/dp.jpg" alt="" />
+    </div>
+    <p class="name">{{topic.name}}</p>
+  </a>
+  {% endfor %}
+</div>
+<div class="friends-section">
+  <h4>Recommended Posts</h4>
+  {% for post in  recommended_posts %}
+  <a class="friend" href="#">
+    <div class="dp">
+      <img src="./images/dp.jpg" alt="" />
+    </div>
+    <p class="name">{{post.title}}</p>
+  </a>
+
+  {% endfor %}
+</div>
+
+{% endblock %}

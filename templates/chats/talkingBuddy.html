@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taling Buddy</title>
+
+    <link rel="stylesheet" href="{% static 'chats/talkingBuddy.css' %}" />
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="head">
+            <div class="burger">
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+                <div class="burger_line"></div>
+            </div>
+            <div class="center">
+                <div class="head_left">
+                    <h5>Lakshman AI</h5>
+                    <div class="head_left_img"></div>
+                </div>
+                <div class="head_right">
+                    <div class="head_right_img"></div>
+                    <h5>Me</h5>
+                </div>
+            </div>
+
+        </div>
+        <div class="body">
+
+
+
+
+            <div class="left">
+                <figure class="s-message">
+                    <figcaption><span>Lakshman</span>March 24, 2023, 4:30 p.m
+                        <div class="dot"></div>
+                    </figcaption>
+                    <p>Hellow i am  Lakshaman</p>
+                </figure>
+
+                {% for chat in chats %}
+                {% if chat.sender == 'buddy' %}
+
+
+                <figure class="s-message">
+                    <figcaption><span>Lakshman</span>{{chat.timestamp}}
+                        <div class="dot"></div>
+                    </figcaption>
+                    <p>{{chat.content}}</p>
+                </figure>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+
+
+
+            <div class="right">
+                <figure class="u-message">
+                    <figcaption>
+                        <div class="dot_green"></div><span>Me</span>March 24, 2023, 4:00 p.m
+                    </figcaption>
+                    <p>Hellow i am {{user.username}}</p>
+                </figure>
+
+                {% for chat in chats %}
+
+                {% if chat.receiver == 'buddy' %}
+
+
+                <figure class="u-message">
+                    <figcaption>
+                        <div class="dot_green"></div><span>Me</span>{{chat.timestamp}}
+                    </figcaption>
+                    <p>{{chat.content}}</p>
+                </figure>
+                {% endif %}
+                {% endfor %}
+
+            </div>
+
+
+            
+
+        </div>
+        <div class="footer">
+            <div class="sending-message">
+                <button>SEND<svg id="send-ico" viewBox="0 0 26.5 22.9">
+                        <polygon points="5.8,0 26.5,12.4 5.3,22.9 6.6,14.8 0,10.4 11.3,10.4 6.4,7.7 " />
+                    </svg>
+                </button>
+                <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
+            </div>
+
+        </div>
+        <div class="line"></div>
+    </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
+
+    <script>
+        console.clear();
+
+        // shitty js not for use, just don`t look)
+
+        $(document).ready(
+            function () {
+                $(".body").niceScroll({
+                    cursorcolor: "rgba(0,0,0,0.5)",
+                    cursorborder: "none",
+                    zindex: 99999
+                });
+            }
+        );
+
+        $("body").getNiceScroll().hide();
+
+        $(window).on('keydown', function (e) {
+            if (e.which == 13) {
+                sendMess();
+                return false;
+            }
+        });
+
+        // send mesage
+        // send mesage
+        function sendMess() {
+
+            var date = new Date().toLocaleString();
+            
+            var msg = $('.sending-message textarea').val();
+
+            var height = $('.body')[0].scrollHeight;
+            if ($.trim(msg) == '') {
+                return false;
+            }
+            $('<figure class="u-message"><figcaption><div class="dot_green"></div><span>Me</span>' + date +
+                '</figcaption><p>' + msg + '</p></figure>').appendTo($('.right')).hide().show("fast");
+
+            $('.body').animate({
+                scrollTop: $('figure').last().offset().bottom
+            }, 'slow');
+
+            $('.sending-message textarea').val(null);
+
+
+            //get message from server
+            //get message from server;
+            $.post("{%url 'talking_buddy_get_response' %}", {
+                    'message': msg,
+                    'csrfmiddlewaretoken': "{{ csrf_token }}"
+                },
+                function (data, status) {
+
+                    console.log(data, status);
+                    if (status == 'success') {
+                        console.log(data.response);
+                        var date = new Date().toLocaleString();
+                        var height = $('.body')[0].scrollHeight;
+
+                        $('<figure class="s-message"><figcaption><span>Lakshman</span>' + date +
+                                '<div class="dot"></div></figcaption><p>' + data.response + '</p></figure>')
+                            .appendTo($('.left'))
+                            .hide().show(
+                                "fast");
+
+                        $('.body').animate({
+                            scrollTop: $('figure').last().offset().bottom
+                        }, 'slow');
+                    }
+
+                }
+            );
+
+
+
+
+        }
+
+
+
+        $(".sending-message button").click(function () {
+            sendMess();
+        });
+    </script>
+
+</body>
+
+</html>

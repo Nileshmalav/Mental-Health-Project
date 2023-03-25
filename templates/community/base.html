@@ -1,0 +1,172 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'community/sprofile.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbUUtNmM5ZTNqOThqckRDUUZpM1lfdVNZdEZ3QXxBQ3Jtc0tud0JlZU04Y2g2NzdZLW1yTlR0elJ3NXE5ZXNzNUtINnhIYWdVTzFsRC14Q3NkMVpPeFhxQUFScFZSVTVOdGk1eHFzTXI1cjN1TlFoQ2IwRXc1VmxMS3liZmtwSnRCYno3QTM4UzlrOEY1WUJjY0d4QQ&q=https%3A%2F%2Funicons.iconscout.com%2Frelease%2Fv2.1.6%2Fcss%2Funicons.css"
+    />
+    <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="left-panel">
+      {% block leftpanel %}{% endblock %}
+        <ul>
+          <li>
+            <div class="dp">
+              <img src="images/girl.jpg" alt="" />
+            </div>
+            <span class="profile"></span>
+            <p>{{ user.name }}</p>
+          </li>
+          <li>
+            <i class="fa fa-star"></i>
+            <p>Your matches</p>
+          </li>
+          <li>
+            <i class="fa fa-user-friends"></i>
+            <p>Liked profiles</p>
+          </li>
+          <li>
+            <i class="fa fa-play-circle"></i>
+            <p>Videos</p>
+          </li>
+          <li>
+            <i class="fas fa-calendar-week"></i>
+            <p>Dates Scheduled</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="middle-panel">
+        <div class="post create">
+          <div class="post-top">
+            <div class="dp">
+              <img src="images/girl.jpg" alt="" />
+            </div>
+            <input type="text" placeholder="What's on your mind?" />
+          </div>
+
+          <div class="post-bottom">
+            <div onclick="document.getElementById('PostAddForm').style.display='block'" class="action">
+              <span class="material-icons"> add_circle</span>
+              <span>Add Post</span>
+            </div>
+            <div class="action">
+              <i class="fa fa-smile"></i>
+              <span>Feeling/Activity</span>
+            </div>
+          </div>
+        </div>
+
+    {% block middlepanel %}{% endblock %}
+      </div>
+      <div class="right-panel">
+     {% block rightpanel %}{% endblock %}
+        
+      </div>
+    </div>
+
+    <div>
+      <!-- comment form  -->
+      <!-- comment form  -->
+      <!-- comment form  -->
+      <div id="PostAddForm" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top w3-card-4">
+          <header class="w3-container w3">
+            <span
+              onclick="document.getElementById('PostAddForm').style.display='none'"
+              class="w3-button w3-display-topright"
+              >&times;</span
+            >
+            <h2>Add Post</h2>
+          </header>
+          <div id="addForm">
+            <div>
+              <img id="imgPreview" src="" alt="" />
+            </div>
+            <form
+              action='{% url "community_post_create" %}'
+              method="POST"
+              enctype="multipart/form-data"
+            >
+        {% csrf_token %}
+          
+              <div class="mb-3">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select name="topic" class="form-control" id="exampleFormControlSelect1">
+                  {% for topic in topics %}
+                  <option>{{ topic.name}}</option>
+                  {% endfor %}
+                </select value="{{ topic.name }}">
+
+                </div>
+
+              <div class="mb-3">
+                <label for="text">Title:</label>
+                <textarea
+                  class="form-control"
+                  name="title"
+                  rows="2"
+                  id="text"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="text">Content:</label>
+                <textarea
+                  class="form-control"
+                  name="content"
+                  rows="6"
+                  id="text"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  </body>
+</html>

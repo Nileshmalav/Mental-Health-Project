@@ -1,0 +1,38 @@
+.title, .title1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    left: 50px;
+    font-size: 40px;
+    color: blue;
+}
+.title1{
+    font-size: 20px;
+    color: black;
+}
+
+.container{
+    margin-top: 70px;
+    background: rgba(245, 245, 245, 0.385);
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.card{
+    margin: 20px 50px;
+}
+.card > img{    
+    width: 150px;
+}
+.card> .name{
+    text-align: center;
+}
+
+.card:hover{
+    transform: scale(0.9);
+    transition-duration: .3s;
+}

@@ -1,0 +1,35 @@
+{% extends "community/base.html" %}
+{% load static %}
+{% block title %}Community{% endblock %}
+{% block middlepanel %}
+<div class="post">
+    <div class="post-top">
+        <div class="dp">
+            <img src="./images/girl.jpg" alt="">
+        </div>
+        <div class="post-info">
+            <p class="name">{{ user }}</p>
+            <span class="time">12 hrs ago</span>
+        </div>
+        <i class="fas fa-ellipsis-h"></i>
+    </div>
+
+    <div class="post-content">
+        “Love is an untamed force. When we try to control it, it destroys us. When we try to imprison it, it
+        enslaves us. When we try to understand it, it leaves us feeling lost and confused.” – Paulo Coelho
+    </div>
+
+    <div class="post-bottom">
+        <div class="action">
+            <i class="far fa-thumbs-up"></i>
+            <span>Upvote</span>
+        </div>
+        <div class="action">
+            <i class="far fa-comment"></i>
+            <span>Comment</span>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
