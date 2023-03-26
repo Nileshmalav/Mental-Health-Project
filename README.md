@@ -50,7 +50,7 @@ This condition is worsen by the fact that they don’t open up about their probl
 > myenv\Scripts\activate
 3. run docker redis for django channels
 >docker run -p 6379:6379 -d redis:5
-## 4. update [openAI API](https://platform.openai.com/docs/api-reference) Key in Talking_Buddy > gptcode.py
+### 4. update [openAI API](https://platform.openai.com/docs/api-reference) Key in Talking_Buddy > gptcode.py
 ![Screenshot (1252)](https://user-images.githubusercontent.com/76725762/227751467-83983727-1a38-4b47-8393-264a199c6546.png)
 
 5. run application
