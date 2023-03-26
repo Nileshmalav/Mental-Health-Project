@@ -44,8 +44,10 @@ This condition is worsen by the fact that they don’t open up about their probl
 # to run this project in local machine
 
 1. install python 
-2. install dependencies
-> pip install -r requirements.txt
+2. install dependencies 
+> pip install -r requirements.txt 
+ or activate virtual env
+> myenv\Scripts\activate
 3. run docker redis for django channels
 >docker run -p 6379:6379 -d redis:5
 ## 4. update [openAI API](https://platform.openai.com/docs/api-reference) Key in Talking_Buddy > gptcode.py
