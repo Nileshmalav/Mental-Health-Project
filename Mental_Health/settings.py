@@ -38,17 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Activities',
     'Authentication',
     'Chats',
-    'Community',
-    'Health_Monitoring',
     'Main_App',
     'Services',
+    'Talking_Buddy',
     
 ]
 
-    # 'Talking_Buddy',
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

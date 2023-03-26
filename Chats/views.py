@@ -13,7 +13,8 @@ def index(request):
     person=Person.objects.get(username=request.user)
     thread=Chat_Thread.objects.filter(sender=person) |  Chat_Thread.objects.filter(receiver=person)
     thread=thread.all().order_by('-last_message')
-    context = {"user":person,"threads":thread}
+    experts=Person.objects.filter(type="expert")
+    context = {"user":person,"threads":thread,"experts":experts}
     return render(request, "chats/index.html",context=context)
 
 
@@ -80,3 +81,11 @@ def room(request, room_name):
     context = {"user":person,"room_name": room_name,"receiver":receiver,"chats":mychats}
     return render(request, "chats/chat.html", context=context)
 
+
+
+
+@login_required
+def community_chats(request,name):
+    person=Person.objects.get(username=request.user)
+    context = {"user":person,"room_name": name,"chats":[]}
+    return render(request, "chats/community.html", context=context)

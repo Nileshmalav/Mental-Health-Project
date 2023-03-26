@@ -1,1 +1,64 @@
-{% extends "base/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Mental Health</title>
+
+ 
+  <link rel="stylesheet" href=" {% static 'home/style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="drag-container">
+  <div id="spin-container">
+    <!-- Add your images (or video) here -->
+
+    <img  onclick="window.location.replace('/')" src="{% static '/image/home.png' %}" alt="">
+    <img onclick="window.location.replace('/chats')" src="{% static '/image/chat.png' %}" alt="">
+    <img onclick="window.location.replace('/buddy')" src="{% static '/image/buddy.png' %}" alt="">
+    <img onclick="window.location.replace('/services')" src="{% static '/image/service.png' %}" alt="">
+    <img onclick="window.location.replace('/chats/community/roomname')" src="{% static '/image/community.png' %}" alt="">
+    <img onclick="window.location.replace('authentication/signout')" src="{% static '/image/logout.png' %}" alt="">
+  
+  </div>
+  <div id="ground"></div>
+</div>
+
+<div id="music-container"></div>
+
+
+
+
+
+<script  src="{% static "home/script.js" %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script>
+  navigator.geolocation.watchPosition((a)=>{
+    x=a.coords.latitude//isse latitude ayega
+    y=a.coords.longitude//isse longitude milega
+   
+    const url1 = `location/`
+                $.ajax({
+                    data: {
+                        'latitude':x,
+                        'longitude':y,
+                        'csrfmiddlewaretoken': "{{ csrf_token }}"
+                        
+                    },
+                    url: url1,
+                    type: 'POST',
+                    success: function (response) {
+                        console.log("success")
+                    },
+                    error: function (response) {
+                        console.log("error")
+
+                    }
+                });
+})
+</script>
+
+</body>
+</html>

@@ -64,7 +64,7 @@
  .head_left_img {
 	 width: 36px;
 	 height: 36px;
-	 background-image: url(https://pbs.twimg.com/profile_images/3653657643/a014a44c0f8d966825d3706c71f7307e_normal.jpeg);
+	 background-image: url("https://images.pexels.com/photos/14282982/pexels-photo-14282982.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
 	 background-size: cover;
 	 border-radius: 100%;
 }
@@ -77,7 +77,6 @@
  .head_right_img {
 	 width: 36px;
 	 height: 36px;
-	 background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/280486/profile/profile-80_6.jpg);
 	 background-size: cover;
 	 border-radius: 100%;
 }

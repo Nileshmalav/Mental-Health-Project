@@ -1,0 +1,48 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Services</title>
+  <link rel='stylesheet' href='https://www.littlesnippets.net/css/codepen-result.css'>
+  <link rel="stylesheet" href="{% static 'services/style.css' %}">
+<style type="text/css">
+
+  .service_name{
+    text-align: center;
+    margin-top: -15px;
+    color:white;
+    width: 100%;
+    font-size:25px;
+  }
+  </style>
+</head>
+<body>
+<div class="service_name" style="height:100px;">
+  <h1 >Services</h1>
+  <h3>Know the best expert around you!</h3>
+</div>
+<br><br><br>
+<!-- partial:index.partial.html -->
+
+
+
+
+{% for person in services %}
+<figure class="snip1344"><img src="{% static 'profile/profile.png' %}" alt="profile-sample1" class="background"/><img src="{% static 'profile/profile.png' %}" alt="profile-sample1" class="profile"/>
+  <figcaption>
+    <h3>{{person.expert.name}}<span>{{person.service_type.name}}</span></h3>
+    <div class="icons">{{person.description}}</div>
+    <div class="icons">{{person.distance}} km away</div>
+  </figcaption>
+</figure>
+{% endfor %}
+
+<!-- partial -->
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'>
+
+
+  </script><script  src="{% static 'services/script.js' %}"></script>
+
+</body>
+</html>

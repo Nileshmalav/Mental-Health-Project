@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render, redirect,HttpResponse
+from Authentication.models import Person
 
 
 
@@ -15,5 +15,11 @@ def home(request):
     
     
     
-def sample(request):
-    return render(request, 'base/base1.html')
+def location(request):
+    person=Person.objects.get(username=request.user)
+    print(request.POST)
+    person.latitute_x=request.POST['latitude']
+    person.longitude_y=request.POST['longitude']
+    print(request.POST['longitude'])
+    person.save()
+    return HttpResponse("success")
