@@ -1,4 +1,4 @@
-<h1  align="center">Hack36 '23</h1>
+<h1  align="center">Hack36 6.0</h1>
 
 <p  align="center">
 
