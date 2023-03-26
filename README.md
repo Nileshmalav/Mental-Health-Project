@@ -56,5 +56,6 @@ This condition is worsen by the fact that they don’t open up about their probl
 5. run application
 > python manage.py runserver 
 6. go to link 127.0.0.1:8000
+### sample username:"nilesh" , password: "password"
 
 
