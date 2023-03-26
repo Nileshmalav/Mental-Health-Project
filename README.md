@@ -39,3 +39,18 @@ This condition is worsen by the fact that they don’t open up about their probl
 ### Made at:
 
 <a  href="https://hack36.com">  <img  src="https://i.postimg.cc/RFFWF4vg/built-at-hack.jpg"  height=24px>  </a>
+
+
+# to run this project in local machine
+
+1. install python 
+2. install dependencies
+> pip install -r requirements.txt
+3. run docker redis 
+>docker run -p 6379:6379 -d redis:5
+4. update openAI API Key in Talking_Buddy > gptcode.py
+4. run app.py
+> python manage.py runserver 
+
+
+
