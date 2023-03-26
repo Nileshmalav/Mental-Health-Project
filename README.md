@@ -44,9 +44,9 @@ This condition is worsen by the fact that they don’t open up about their probl
 # to run this project in local machine
 
 1. install python 
-2. install dependencies 
+2. install dependencies  or activate virtual env
 > pip install -r requirements.txt 
- or activate virtual env
+
 > myenv\Scripts\activate
 3. run docker redis for django channels
 >docker run -p 6379:6379 -d redis:5
